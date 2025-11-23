@@ -1,0 +1,21 @@
+﻿using Store.G05.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Store.G05.Domain.Contracts
+{
+    public interface ISpecifications<Tkey,TEntity> where TEntity : BaseEntity<Tkey>
+    {
+         List<Expression<Func<TEntity,object>>> Includes { get; set; }
+         Expression<Func<TEntity,bool>>? Criteria { get; set; }
+         Expression<Func<TEntity,object>>? OrderBy { get; set; }
+         Expression<Func<TEntity,object>>? OrderByDesc { get; set; }
+         int Skip { get; set; }
+         int Take { get; set; }
+        bool IsPagination { get; set; }
+    }
+}
